@@ -6,14 +6,12 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 using EnigmaChat.Mobile.Models;
-using EnigmaChat.Mobile.Services;
+using EnigmaChat.SignalR.Client;
 
 namespace EnigmaChat.Mobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
         bool isBusy = false;
         public bool IsBusy
         {
@@ -40,6 +38,9 @@ namespace EnigmaChat.Mobile.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+        ChatService chatService;
+        public ChatService ChatService =>
+            chatService ?? (chatService = DependencyService.Resolve<ChatService>());
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

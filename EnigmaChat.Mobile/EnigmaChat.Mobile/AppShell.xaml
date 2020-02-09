@@ -31,11 +31,11 @@
 
     <!-- Your Pages -->
     <TabBar>
-        <Tab Title="Browse" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <Tab Title="Lobby" Icon="tab_feed.png">
+            <ShellContent ContentTemplate="{DataTemplate local:LobbyPage}" />
         </Tab>
-        <Tab Title="About" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+        <Tab Title="Profile" Icon="tab_about.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
         </Tab>
     </TabBar>
 
