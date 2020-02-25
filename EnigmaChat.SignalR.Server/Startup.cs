@@ -26,6 +26,7 @@ namespace EnigmaChat.SignalR.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddControllers();
             services.AddSignalR();
             //services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
@@ -53,8 +54,12 @@ namespace EnigmaChat.SignalR.Server
             //app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                
                 endpoints.MapHub<ChatHub>("/hubs/chat");
+
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Chat}/{action=Index}/{id?}");
             });
         }
     }
