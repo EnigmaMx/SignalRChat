@@ -9,7 +9,7 @@ namespace EnigmaChat.Mobile.Helpers
     {
         public static string AppCenterAndroid = "AC_ANDROID";
 
-#if RELEASE
+#if DEBUG
         static readonly string defaultIP = DeviceInfo.Platform == DevicePlatform.Android ? "10.0.2.2" : "localhost";
 #else
         static readonly string defaultIP = "enigmachat.azurewebsites.net";
