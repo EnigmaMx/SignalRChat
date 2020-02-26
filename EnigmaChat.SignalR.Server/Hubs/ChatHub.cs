@@ -8,7 +8,6 @@ namespace EnigmaChat.SignalR.Server.Hubs
         public async Task AddToGroup(string groupName, string user)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-
             await Clients.Group(groupName).SendAsync("Entered", user);
         }
 
@@ -20,7 +19,6 @@ namespace EnigmaChat.SignalR.Server.Hubs
         public async Task RemoveFromGroup(string groupName, string user)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
-
             await Clients.Group(groupName).SendAsync("Left", user);
         }
 
@@ -28,6 +26,7 @@ namespace EnigmaChat.SignalR.Server.Hubs
         {
             await Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
         }
+
         public async Task SendMessage( string user, string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);

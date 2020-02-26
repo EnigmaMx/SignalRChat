@@ -40,6 +40,7 @@ namespace EnigmaChat.SignalR.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseStaticFiles();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,12 +55,12 @@ namespace EnigmaChat.SignalR.Server
             //app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
-                
-                endpoints.MapHub<ChatHub>("/hubs/chat");
-
-                endpoints.MapControllerRoute(
+                  endpoints.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Chat}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/hubs/chat");
+
+              
             });
         }
     }
