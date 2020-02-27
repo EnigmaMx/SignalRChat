@@ -1,0 +1,16 @@
+﻿.slide-fade-enter-active, .slide-fade-leave-active {
+    transition: all 1s ease;
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+    height: 0px;
+    overflow-y: hidden;
+    opacity: 0;
+}
+
+.right {
+    text-align: right
+}
+.title{
+    margin-top:30px;
+}
