@@ -29,12 +29,13 @@ namespace EnigmaChat.SignalR.Server
             services.AddMvc();
             services.AddControllers();
             services.AddSignalR();
-            //services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
-            //{
-            //    builder.AllowAnyMethod()
-            //        .AllowAnyHeader().WithOrigins("localhost:*").
-            //        AllowCredentials();
-            //}));
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyMethod()
+                    .AllowAnyHeader().WithOrigins("http://127.0.0.1:8887").
+                    AllowCredentials();
+
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +53,7 @@ namespace EnigmaChat.SignalR.Server
 
             app.UseRouting();
 
-            //app.UseCors("CorsPolicy");
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                   endpoints.MapControllerRoute(
