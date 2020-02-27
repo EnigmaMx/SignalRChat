@@ -1,8 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using EnigmaChat.Mobile.Services;
 using EnigmaChat.Mobile.Views;
+using EnigmaChat.SignalR.Client;
 
 namespace EnigmaChat.Mobile
 {
@@ -12,8 +12,7 @@ namespace EnigmaChat.Mobile
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ChatService>();
             MainPage = new AppShell();
         }
 

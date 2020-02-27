@@ -26,22 +26,19 @@ namespace EnigmaChat.SignalR.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddControllers();
             services.AddSignalR();
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyMethod()
-                    .AllowAnyHeader().WithOrigins("http://127.0.0.1:8887").
+                    .AllowAnyHeader().
                     AllowCredentials();
-
             }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseStaticFiles();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,12 +53,8 @@ namespace EnigmaChat.SignalR.Server
             app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
-                  endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Chat}/{action=Index}/{id?}");
+                endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/hubs/chat");
-
-              
             });
         }
     }
