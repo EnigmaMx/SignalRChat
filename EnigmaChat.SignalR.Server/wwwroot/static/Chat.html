@@ -22,13 +22,13 @@
         <div class="row" v-if="ready">
             <div class="signalr-demo col-sm">
                 <hr />
-               
+
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Group</label>
                         <select @change="groupChanged($event)" class="form-control">
                             <option value="">Select a group</option>
-                            <option value="xamarin">Xamarin</option>
+                            <option value="CursoXamarin">CursoXamarin</option>
                             <option value="programadores">Programadores</option>
                         </select>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
             </transition-group>
         </div>
-       
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -88,7 +88,8 @@
             mounted: function () {
                 this.username = localStorage.getItem('username');
                 connection = new signalR.HubConnectionBuilder()
-                    .withUrl(`/hubs/chat`)
+                    .withUrl('https://enigmachat.azurewebsites.net/hubs/chat', {
+                    })
                     .build();
 
                 connection.on('ReceiveMessage', onNewMessage.bind(this));
@@ -129,7 +130,7 @@
                     this.newMessage = '';
                 },
                 sendMessage: function (sender, messageText) {
-                    connection.invoke("SendMessageGroup",this.selectedGroup, sender, messageText)
+                    connection.invoke("SendMessageGroup", this.selectedGroup, sender, messageText)
                 },
                 requestUserName: function () {
                     var username = prompt("Enter your name:", "");
